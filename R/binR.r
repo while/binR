@@ -17,7 +17,7 @@ binR <- function(fx, data, algorithm=c("quantile", "rpart", "manual"), ...) {
   # Match algorithm and run the respective function w additional args
   out <- switch(match.arg(algorithm, c("quantile", "rpart", "manual")),
                 quantile=do.call(binR_quantile, c(list(fx), list(data), dots)),
-                rbind=do.call(binR_rbind, c(list(fx), list(data), dots)),
+                rpart=do.call(binR_rpart, c(list(fx), list(data), dots)),
                 manual=do.call(binR_manual, c(list(fx), list(data), dots)))
   out
 }
