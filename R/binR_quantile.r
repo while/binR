@@ -13,9 +13,13 @@
 binR_quantile <- function(fx, data, probs = seq(0, 1, 0.25), cumulative=F) {
   mframe <- model.frame(fx, data)[ ,-1,drop=F]  # drop dependent variable
   vars <- names(mframe)
+  response <- all.vars(fx[[2]])
+
+  if (length(response) != 1) stop("Incorrently defined response variable")
+
   breaks = list()
 
-  dat <- foreach(d=vars, .combine=data.frame) %do% {
+  dat <- foreach(d=vars, .combine=data.frame) %dopar% {
     breaks[[d]] <- quantile(mframe[ ,d], probs=probs)
 
     lb <- ifelse(all(mframe[ ,d] >= 0), 0, -Inf)
