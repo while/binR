@@ -22,6 +22,8 @@ binR <- function(fx, data, fun=quantile, cumulative=F) {
     ub <- ifelse(all(mframe[ ,d] <= 0), 0, Inf)
     breaks[[d]][1] <- lb
     breaks[[d]][length(breaks[[d]])] <- ub
+    names(breaks[[d]]) <- NULL
+
     cut(mframe[ ,d], breaks=breaks[[d]], include.lowest=T, right=F)
   }
   names(dat) <- vars
