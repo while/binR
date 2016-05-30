@@ -2,4 +2,9 @@
 
 S3method(predict,binR)
 export(binR)
+export(binR_manual)
+export(binR_quantile)
+export(binR_rpart)
+export(rpart_breaks)
 import(foreach)
+import(rpart)
