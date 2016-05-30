@@ -10,25 +10,12 @@
 #' @import foreach
 #' @export
 ##------------------------------------------------------------------------------
-binR <- function(fx, data, fun=quantile, cumulative=F) {
-  mframe <- model.frame(fx, data)
-  vars <- names(mframe)
-  breaks = list()
+binR <- function(fx, data, algorithm=c("quantile", "rpart", "manual"), ...) {
+  dots <- list(...)
 
-  dat <- foreach(d=vars, .combine=data.frame) %do% {
-    breaks[[d]] <- fun(mframe[ ,d])
-
-    lb <- ifelse(all(mframe[ ,d] >= 0), 0, -Inf)
-    ub <- ifelse(all(mframe[ ,d] <= 0), 0, Inf)
-    breaks[[d]][1] <- lb
-    breaks[[d]][length(breaks[[d]])] <- ub
-    names(breaks[[d]]) <- NULL
-
-    cut(mframe[ ,d], breaks=breaks[[d]], include.lowest=T, right=F)
-  }
-  names(dat) <- vars
-
-  out <- list(breaks=breaks, vars=vars)
-  class(out) <- "binR"
+  out <- switch(match.arg(algorithm, c("quantile", "rpart", "manual")),
+                quantile=do.call(binR_quantile, c(list(fx), list(data), dots)),
+                rbind=do.call(binR_rbind, c(list(fx), list(data), dots)),
+                manual=do.call(binR_manual, c(list(fx), list(data), dots)))
   out
 }
