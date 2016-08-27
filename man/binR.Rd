@@ -10,7 +10,7 @@ binR(fx, data, algorithm = c("quantile", "rpart", "manual"), ...)
 Bin a dataset using a formula and a breaks function
 }
 \details{
-Bin or dkiscretize a dataset using a formula.
+Discretize a dataset using a formula.
 }
 \author{
 Vilhelm von Ehrenheim

@@ -7,6 +7,7 @@
 #' Bin or dkiscretize a dataset using a formula.
 #' 
 #' @author Vilhelm von Ehrenheim
+#' @import rpart
 #' @export
 ##------------------------------------------------------------------------------
 binR_rpart <- function(fx, data, cumulative=F) {

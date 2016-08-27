@@ -7,7 +7,8 @@ Description: binR enables discretization of a dataset into bins using a
     discretization on new data as was done on the original set.
 Depends:
     R (>= 3.2.4),
-    foreach (>= 1.4.1)
+    foreach (>= 1.4.1),
+    rpart (>= 4.1-0)
 License: MIT
 Encoding: UTF-8
 LazyData: true

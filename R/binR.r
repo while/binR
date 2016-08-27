@@ -8,6 +8,7 @@
 #' 
 #' @author Vilhelm von Ehrenheim
 #' @import foreach
+#' @import rpart
 #' @export
 ##------------------------------------------------------------------------------
 binR <- function(fx, data, algorithm=c("quantile", "rpart", "manual"), ...) {
