@@ -12,7 +12,7 @@
 #' @export
 ##------------------------------------------------------------------------------
 predict.binR <- function(obj, newdata) {
-  fx <- as.formula(paste('~',paste(bdat$vars, collapse="+")))
+  fx <- as.formula(paste('~',paste(obj$vars, collapse="+")))
   mframe <- model.frame(fx, newdata)
 
   out <- foreach(d=obj$vars, .combine=data.frame, .multicombine=T) %dopar% {
